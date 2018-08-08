@@ -46,7 +46,6 @@ app.post('/api/node-api', async (req, res) => {
     'process',
     'representatives_online',
     'validate_account_number',
-    'work_generate',
   ];
   if (!req.body.action || allowedActions.indexOf(req.body.action) === -1) {
     return res.status(500).json({ error: `Action ${req.body.action} not allowed` });
