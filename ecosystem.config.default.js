@@ -7,19 +7,12 @@ module.exports = {
   
       // First application
       {
-        name      : "NanoVault Server",
+        name      : "NinjaVault Server",
         script    : "index.js",
         env: {
           APP_PORT: "9950",
+          CALLBACK_PORT: "9960",
           NANO_NODE_URL: "http://[::1]:7076"
-        }
-      },
-      {
-        name      : "NanoVault Server BETA",
-        script    : "index.js",
-        env : {
-          APP_PORT: "9951",
-          NANO_NODE_URL: "http://[::1]:55000"
         }
       }
     ]
