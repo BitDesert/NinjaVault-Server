@@ -56,16 +56,16 @@ app.post('/api/node-api', async (req, res) => {
 });
 
 io.on('connection', function (socket) {
-  console.log(`- New Connection`);
+  console.log(socket.id + " connected");
 
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
   socket.on('subscribe', account => {
+    console.log(socket.id + " subscribed to "+ account);
+    
     socket.join(account);
   });
   socket.on('unsubscribe', account => {
+    console.log(socket.id + " unsubscribed to "+ account);
+
     socket.leave(account);
   });
 });
