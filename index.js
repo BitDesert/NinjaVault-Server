@@ -62,13 +62,11 @@ io.on('connection', function (socket) {
   socket.on('my other event', function (data) {
     console.log(data);
   });
-  socket.on('message', message => {
-    try {
-      const event = JSON.parse(message);
-      parseEvent(ws, event);
-    } catch (err) {
-      console.log(`Bad message: `, err);
-    }
+  socket.on('subscribe', account => {
+    socket.join(account);
+  });
+  socket.on('unsubscribe', account => {
+    socket.leave(account);
   });
 });
 
