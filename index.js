@@ -83,7 +83,7 @@ app_callback.post('/api/new-block', (req, res) => {
   const fullBlock = req.body;
   try {
     fullBlock.block = JSON.parse(fullBlock.block);
-    saveHashTimestamp(fullBlock.hash);
+    //saveHashTimestamp(fullBlock.hash);
   } catch (err) {
     return console.log(`Error parsing block data! `, err.message);
   }
