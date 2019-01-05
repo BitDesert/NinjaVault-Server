@@ -101,8 +101,6 @@ app_callback.post('/api/new-block', (req, res) => {
 
   // Send it to all!
   destinations.forEach(destination => {
-    if (!subscriptionMap[destination]) return; // Nobody listening for this
-
     console.log(`Sending block to subscriber ${destination}: `, fullBlock.amount);
 
     io.to(destination).emit('newTransaction', fullBlock);
