@@ -15,9 +15,6 @@ exports = module.exports = function analytics(options) {
         // get the domain and url
         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-        // get the URL locally or behind a proxy
-        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-
         // get the API action
         if(req.body.action){
             var action = req.body.action;
@@ -34,7 +31,7 @@ exports = module.exports = function analytics(options) {
               '1': ['API version', 'v1'],
               '2': ['HTTP method', req.method]
             }),
-            cip: ip
+            cip: req.ip
 
         });
         next();

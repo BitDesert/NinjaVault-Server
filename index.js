@@ -18,6 +18,7 @@ const matomo = require('./matomo');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.enable('trust proxy')
 
 if (process.env.MATOMO_URL) {
   console.log('Matomo Analytics activated');
