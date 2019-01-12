@@ -25,7 +25,8 @@ if (process.env.MATOMO_URL) {
   
   app.use(matomo({
     siteId: process.env.MATOMO_SITE,
-    matomoUrl: process.env.MATOMO_URL
+    matomoUrl: process.env.MATOMO_URL,
+    matomoToken: process.env.MATOMO_TOKEN
   }));
 }
 

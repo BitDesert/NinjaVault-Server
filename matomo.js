@@ -31,6 +31,7 @@ exports = module.exports = function analytics(options) {
               '1': ['API version', 'v1'],
               '2': ['HTTP method', req.method]
             }),
+            token_auth: options.matomoToken,
             cip: req.ip
 
         });

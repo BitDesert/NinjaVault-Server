@@ -14,6 +14,7 @@ module.exports = {
           CALLBACK_PORT: "9960",
           NANO_NODE_URL: "http://[::1]:7076",
           MATOMO_URL: "https://piwik.org/piwik.php",
+          MATOMO_TOKEN: "yourtoken",
           MATOMO_SITE: "1"
         }
       }
