@@ -12,11 +12,21 @@ let tpsCount = 0;
 const express = require('express');
 const request = require('request-promise-native');
 const cors = require('cors');
+const matomo = require('./matomo');
 
 // Set up the public webserver
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+if (process.env.MATOMO_URL) {
+  console.log('Matomo Analytics activated');
+  
+  app.use(matomo({
+    siteId: process.env.MATOMO_SITE,
+    matomoUrl: process.env.MATOMO_URL
+  }));
+}
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -59,12 +69,12 @@ io.on('connection', function (socket) {
   console.log(socket.id + " connected");
 
   socket.on('subscribe', account => {
-    console.log(socket.id + " subscribed to "+ account);
-    
+    console.log(socket.id + " subscribed to " + account);
+
     socket.join(account);
   });
   socket.on('unsubscribe', account => {
-    console.log(socket.id + " unsubscribed to "+ account);
+    console.log(socket.id + " unsubscribed to " + account);
 
     socket.leave(account);
   });

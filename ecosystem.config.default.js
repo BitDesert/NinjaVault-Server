@@ -12,7 +12,9 @@ module.exports = {
         env: {
           APP_PORT: "9950",
           CALLBACK_PORT: "9960",
-          NANO_NODE_URL: "http://[::1]:7076"
+          NANO_NODE_URL: "http://[::1]:7076",
+          MATOMO_URL: "https://piwik.org/piwik.php",
+          MATOMO_SITE: "1"
         }
       }
     ]
