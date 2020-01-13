@@ -54,9 +54,35 @@ app.post('/api/node-api', async (req, res) => {
     'process',
     'representatives_online',
     'validate_account_number',
+    'work_generate',
   ];
   if (!req.body.action || allowedActions.indexOf(req.body.action) === -1) {
     return res.status(500).json({ error: `Action ${req.body.action} not allowed` });
+  }
+
+  if (req.body.action == 'work_generate') {
+    if(process.env.DPOW_USER && process.env.DPOW_KEY){
+      console.log('Generating work for ' + req.body.hash + ' via DPoW');
+    } else {
+      console.log('DPoW is not set up, cancelling...');
+      return res.status(500).json({ error: `Action ${req.body.action} not allowed` });
+    }
+
+    return request({
+      method: 'post',
+      uri: process.env.DPOW_URL,
+      json: true,
+      body: {
+        user: process.env.DPOW_USER,
+        api_key: process.env.DPOW_KEY,
+        hash: req.body.hash,
+        timeout: 10,
+      }
+    })
+      .then(async (dpowRes) => {
+        res.json(dpowRes)
+      })
+      .catch(err => res.status(500).json(err.toString()));
   }
 
   // Send the request to the Nano node and return the response
