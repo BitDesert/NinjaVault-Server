@@ -70,7 +70,7 @@ app.post('/api/node-api', async (req, res) => {
 
     return request({
       method: 'post',
-      uri: process.env.DPOW_URL,
+      uri: 'https://dpow.nanocenter.org/service/',
       json: true,
       body: {
         user: process.env.DPOW_USER,
